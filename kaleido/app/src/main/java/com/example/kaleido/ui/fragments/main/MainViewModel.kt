@@ -35,8 +35,8 @@ class MainViewModel @Inject constructor(
     var currentMainResId = R.raw.kaleidoscope
 
     fun refreshMainImage() {
-        val newRes = AppUtils.getRandomLottieResId(arrayOf(currentMainResId))
-        currentMainResId = newRes
+//        val newRes = AppUtils.getRandomLottieResId(arrayOf(currentMainResId))
+//        currentMainResId = newRes
         _mainImageResId.postValue(currentMainResId)
     }
 
