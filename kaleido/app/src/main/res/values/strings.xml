@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">kaleido</string>
+    <string name="app_name">Kaleido</string>
+    <string name="cd_refresh">Refresh</string>
 </resources>
