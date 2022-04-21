@@ -1,6 +1,7 @@
 package com.example.kaleido.ui.common
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
@@ -42,5 +43,9 @@ abstract class BaseFragment: Fragment() {
                 }
             }
         }
+    }
+
+    protected fun isFirstFragment(): Boolean {
+        return parentFragmentManager.backStackEntryCount == 0
     }
 }

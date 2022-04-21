@@ -40,8 +40,6 @@ class SecondFragment : BaseFragment() {
      */
     private val viewModel by viewModels<SecondViewModel>()
 
-    private var hasTransition = false
-
     @Volatile
     private var transitionEndWork: (() -> Unit)? = null
 
@@ -51,12 +49,14 @@ class SecondFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         TransitionInflater.from(requireContext()).let {
-            val enterTransition = it.inflateTransition(R.transition.shared_image)
-            val exitTransition = it.inflateTransition(R.transition.shared_image)
-            sharedElementEnterTransition = enterTransition
-            sharedElementReturnTransition = exitTransition
+            val enterSharedTransition = it.inflateTransition(R.transition.shared_image)
+            val exitSharedTransition = it.inflateTransition(R.transition.shared_image)
+            val fadeExitTransition = it.inflateTransition(R.transition.fade)
+            sharedElementEnterTransition = enterSharedTransition
+            sharedElementReturnTransition = exitSharedTransition
+            exitTransition = fadeExitTransition
 
-            enterTransition.addListener(object: android.transition.Transition.TransitionListener {
+            enterSharedTransition.addListener(object: android.transition.Transition.TransitionListener {
                 override fun onTransitionStart(p0: android.transition.Transition?) {}
 
                 override fun onTransitionCancel(p0: android.transition.Transition?) {}
@@ -66,6 +66,7 @@ class SecondFragment : BaseFragment() {
                 override fun onTransitionResume(p0: android.transition.Transition?) {}
 
                 override fun onTransitionEnd(p0: android.transition.Transition?) {
+                    //startPostponedEnterTransition()
                     transitionEndWork?.invoke()
                 }
             })
@@ -82,12 +83,6 @@ class SecondFragment : BaseFragment() {
 
         ViewCompat.setTransitionName(binding.backgroundAnimation, "second_background_image")
         ViewCompat.setTransitionName(binding.mainImage, "second_main_image")
-
-        sharedElementEnterTransition?.let {
-            // sharedElementEnterTransition will only be true if we have transitioned from another fragment
-            // It will be null if it's actually the very first fragment on startup.
-            hasTransition = true
-        }
 
         arguments?.let {
             val selectedRes = it.getInt("selected_res", 0)
@@ -121,23 +116,26 @@ class SecondFragment : BaseFragment() {
 //            }
         }
 
-        if(!hasTransition) {
-            binding.mainImage.alpha = 1f
-            binding.refreshButton.alpha = 1f
+        transitionEndWork = {
+            fadeInViews(binding)
         }
 
-        transitionEndWork = {
-            ObjectAnimator.ofFloat(binding.mainImage, View.ALPHA, 0f, 1f).apply {
-                duration = 1000
-                start()
-            }
-
-            ObjectAnimator.ofFloat(binding.refreshButton, View.ALPHA, 0f, 1f).apply {
-                duration = 1000
-                start()
-            }
+        if(isFirstFragment()) {
+            fadeInViews(binding)
         }
 
         return binding.root
+    }
+
+    private fun fadeInViews(binding: SecondFragmentBinding) {
+        ObjectAnimator.ofFloat(binding.mainImage, View.ALPHA, 0f, 1f).apply {
+            duration = 1000
+            start()
+        }
+
+        ObjectAnimator.ofFloat(binding.refreshButton, View.ALPHA, 0f, 1f).apply {
+            duration = 1000
+            start()
+        }
     }
 }
