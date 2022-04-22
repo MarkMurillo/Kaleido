@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
 import com.example.kaleido.R
+import com.example.kaleido.ui.activities.MainActivity
 
 abstract class AnimatedFragment: BaseFragment() {
     abstract override fun getViewModel(): AnimatedViewModel
@@ -23,6 +24,13 @@ abstract class AnimatedFragment: BaseFragment() {
     // (when the user press back and this fragment appears after a pop)
     @Volatile
     protected var returnEndWork: (() -> Unit)? = null
+
+    // We map this to the activity's flag since it will be shared between fragments.
+    protected var hideUI: Boolean
+    get() = (requireActivity() as MainActivity).hideUI
+    set(value) {
+        (requireActivity() as MainActivity).hideUI = value
+    }
 
     protected open fun getNextImageAtStart(): Boolean = true
 
@@ -149,5 +157,9 @@ abstract class AnimatedFragment: BaseFragment() {
             })
             start()
         }
+    }
+
+    protected fun hideOrShowUI(view: View) {
+        view.visibility = if(hideUI) View.GONE else View.VISIBLE
     }
 }

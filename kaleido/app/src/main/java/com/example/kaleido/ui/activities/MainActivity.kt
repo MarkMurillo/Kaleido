@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.example.kaleido.R
 
 class MainActivity : AppCompatActivity() {
+    // Shared flag between fragments
+    var hideUI = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

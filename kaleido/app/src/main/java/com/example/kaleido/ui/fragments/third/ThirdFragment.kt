@@ -40,12 +40,20 @@ class ThirdFragment : AnimatedFragment() {
             }
         }
 
+        hideOrShowUI(binding.refreshButton)
+
         binding.mainImage.setOnClickListener {
             val extras = FragmentNavigatorExtras(
                 binding.mainImage to "background_anim",
                 binding.refreshButton to "refresh_button"
             )
             viewModel.navigateToNextFragment(extras)
+        }
+
+        binding.mainImage.setOnLongClickListener {
+            hideUI = !hideUI
+            hideOrShowUI(binding.refreshButton)
+            true
         }
 
         binding.refreshButton.setOnClickListener {
@@ -58,7 +66,7 @@ class ThirdFragment : AnimatedFragment() {
 
         returnEndWork = {
             fadeInView(binding.mainImage)
-            fadeInView(binding.refreshButton)
+            if(!hideUI) fadeInView(binding.refreshButton)
         }
 
         return binding.root
