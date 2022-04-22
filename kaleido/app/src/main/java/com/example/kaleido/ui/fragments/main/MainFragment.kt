@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.animation.fadeIn
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.airbnb.lottie.LottieAnimationView
@@ -53,8 +54,17 @@ class MainFragment : AnimatedFragment() {
         binding.mainImage.setOnLongClickListener {
             hideUI?.let {
                 hideUI = !it
+
+                if (hideUI!!) {
+                    fadeOutView(binding.refreshButton) {
+                        hideOrShowUI(binding.refreshButton)
+                    }
+                } else {
+                    binding.refreshButton.alpha = 0f
+                    hideOrShowUI(binding.refreshButton)
+                    fadeInView(binding.refreshButton)
+                }
             }
-            hideOrShowUI(binding.refreshButton)
             true
         }
 

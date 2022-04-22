@@ -53,8 +53,17 @@ class SecondFragment : AnimatedFragment() {
         binding.mainImage.setOnLongClickListener {
             hideUI?.let {
                 hideUI = !it
+
+                if (hideUI!!) {
+                    fadeOutView(binding.refreshButton) {
+                        hideOrShowUI(binding.refreshButton)
+                    }
+                } else {
+                    binding.refreshButton.alpha = 0f
+                    hideOrShowUI(binding.refreshButton)
+                    fadeInView(binding.refreshButton)
+                }
             }
-            hideOrShowUI(binding.refreshButton)
             true
         }
 
