@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
-    <changeBounds android:duration="2000"/>
-    <changeTransform android:duration="2000"/>
-    <changeClipBounds android:duration="2000"/>
-    <changeImageTransform android:duration="2000"/>
+    <changeBounds android:duration="@integer/animduration"/>
+    <changeTransform android:duration="@integer/animduration"/>
+    <changeClipBounds android:duration="@integer/animduration"/>
+    <changeImageTransform android:duration="@integer/animduration"/>
 </transitionSet>

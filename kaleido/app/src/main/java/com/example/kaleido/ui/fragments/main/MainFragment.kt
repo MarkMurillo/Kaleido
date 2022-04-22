@@ -48,10 +48,13 @@ class MainFragment : BaseFragment() {
     private val viewModel by viewModels<MainViewModel>()
 
     @Volatile
-    private var transitionEndWork: (() -> Unit)? = null
+    private var enterStartWork: (() -> Unit)? = null
 
     @Volatile
-    private var transitionReturnEndWork: (() -> Unit)? = null
+    private var enterEndWork: (() -> Unit)? = null
+
+    @Volatile
+    private var returnEndWork: (() -> Unit)? = null
 
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -73,7 +76,9 @@ class MainFragment : BaseFragment() {
             exitTransition = fadeExitTransition
 
             enterSharedTransition.addListener(object: android.transition.Transition.TransitionListener {
-                override fun onTransitionStart(p0: android.transition.Transition?) {}
+                override fun onTransitionStart(p0: android.transition.Transition?) {
+                    enterStartWork?.invoke()
+                }
 
                 override fun onTransitionCancel(p0: android.transition.Transition?) {}
 
@@ -82,9 +87,8 @@ class MainFragment : BaseFragment() {
                 override fun onTransitionResume(p0: android.transition.Transition?) {}
 
                 override fun onTransitionEnd(p0: android.transition.Transition?) {
-                    //startPostponedEnterTransition()
                     enterSharedTransition.removeListener(this)
-                    transitionEndWork?.invoke()
+                    enterEndWork?.invoke()
                 }
             })
 
@@ -99,7 +103,7 @@ class MainFragment : BaseFragment() {
 
                 override fun onTransitionEnd(p0: android.transition.Transition?) {
                     exitSharedTransition.removeListener(this)
-                    transitionReturnEndWork?.invoke()
+                    returnEndWork?.invoke()
                 }
             })
         }
@@ -142,7 +146,12 @@ class MainFragment : BaseFragment() {
             binding.mainImage.setAndPlayLoopedAnimation(it)
         }
 
-        transitionEndWork = {
+        enterStartWork = {
+            binding.mainImage.alpha = 0f
+            binding.refreshButton.alpha = 0f
+        }
+
+        enterEndWork = {
             fadeInViews(binding)
             arguments?.let {
                 val selectedRes = it.getInt("selected_res", 0)
@@ -153,18 +162,39 @@ class MainFragment : BaseFragment() {
             Log.d("Animation", "Is Animating: ${binding.backgroundAnimation.isAnimating}")
         }
 
-        transitionReturnEndWork = {
-            binding.mainImage.setAndPlayLoopedAnimation(currentMainResId)
+        returnEndWork = {
+            binding.mainImage.playLoopedAnimation()
         }
 
-        fadeInViews(binding)
+        binding.mainImage.alpha = 1f
+        binding.refreshButton.alpha = 1f
 
         return binding.root
     }
 
     private fun fadeInViews(binding: MainFragmentBinding) {
+        binding.mainImage.clearAnimation()
+
         ObjectAnimator.ofFloat(binding.mainImage, View.ALPHA, 0f, 1f).apply {
             duration = 1000
+            addListener(object: Animator.AnimatorListener {
+                override fun onAnimationStart(p0: Animator?) {
+                    //TODO("Not yet implemented")
+                }
+
+                override fun onAnimationEnd(p0: Animator?) {
+                    removeListener(this)
+                    binding.mainImage.setAndPlayLoopedAnimation(currentMainResId)
+                }
+
+                override fun onAnimationCancel(p0: Animator?) {
+                    //TODO("Not yet implemented")
+                }
+
+                override fun onAnimationRepeat(p0: Animator?) {
+                    //TODO("Not yet implemented")
+                }
+            })
             start()
         }
 
