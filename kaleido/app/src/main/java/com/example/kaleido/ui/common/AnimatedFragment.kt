@@ -26,10 +26,12 @@ abstract class AnimatedFragment: BaseFragment() {
     protected var returnEndWork: (() -> Unit)? = null
 
     // We map this to the activity's flag since it will be shared between fragments.
-    protected var hideUI: Boolean
-    get() = (requireActivity() as MainActivity).hideUI
+    protected var hideUI: Boolean?
+    get() = (activity as? MainActivity)?.hideUI
     set(value) {
-        (requireActivity() as MainActivity).hideUI = value
+        value?.let {
+            (activity as? MainActivity)?.hideUI = it
+        }
     }
 
     protected open fun getNextImageAtStart(): Boolean = true
@@ -160,6 +162,8 @@ abstract class AnimatedFragment: BaseFragment() {
     }
 
     protected fun hideOrShowUI(view: View) {
-        view.visibility = if(hideUI) View.GONE else View.VISIBLE
+        hideUI?.let {
+            view.visibility = if(it) View.GONE else View.VISIBLE
+        }
     }
 }

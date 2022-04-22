@@ -51,7 +51,9 @@ class ThirdFragment : AnimatedFragment() {
         }
 
         binding.mainImage.setOnLongClickListener {
-            hideUI = !hideUI
+            hideUI?.let {
+                hideUI = !it
+            }
             hideOrShowUI(binding.refreshButton)
             true
         }
@@ -66,7 +68,9 @@ class ThirdFragment : AnimatedFragment() {
 
         returnEndWork = {
             fadeInView(binding.mainImage)
-            if(!hideUI) fadeInView(binding.refreshButton)
+            hideUI?.let {
+                if(!it) fadeInView(binding.refreshButton)
+            }
         }
 
         return binding.root
