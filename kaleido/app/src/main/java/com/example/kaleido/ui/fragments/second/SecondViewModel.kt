@@ -6,29 +6,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigator
 import com.example.kaleido.R
+import com.example.kaleido.ui.common.AnimatedViewModel
 import com.example.kaleido.ui.common.BaseViewModel
 import com.example.kaleido.utils.AppUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import javax.inject.Named
 
-/**
- * View models must have the @HiltViewModel annotation
- * so we can inject dependencies.
- * Dependencies are injected through the constructor only
- * and require the @Inject annotation on the constructor.
- */
-class SecondViewModel: BaseViewModel() {
-    private val _mainImageResId = MutableLiveData<Int>()
-    val mainImageResId: LiveData<Int>
-    get() = _mainImageResId
-
-    fun refreshMainImage(currentMainResId: Int) {
-        val newRes = AppUtils.getRandomLottieResId(arrayOf(currentMainResId))
-        _mainImageResId.postValue(newRes)
-    }
-
-    fun navigateToNextFragment(args: Bundle, extras: FragmentNavigator.Extras) {
+class SecondViewModel: AnimatedViewModel() {
+    override fun navigateToNextFragment(extras: FragmentNavigator.Extras) {
+        val args = Bundle().apply {
+            this.putInt("selected_res", currentMainResId)
+        }
         navigate(R.id.action_first_fragment, args, extras)
     }
 }

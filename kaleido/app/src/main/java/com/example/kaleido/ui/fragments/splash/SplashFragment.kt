@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.kaleido.databinding.SplashFragmentBinding
+import com.example.kaleido.ui.common.AnimatedFragment
 import com.example.kaleido.ui.common.BaseFragment
 import com.example.kaleido.ui.common.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
