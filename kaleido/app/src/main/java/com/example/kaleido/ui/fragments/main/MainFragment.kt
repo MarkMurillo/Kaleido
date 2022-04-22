@@ -118,7 +118,6 @@ class MainFragment : BaseFragment() {
             val selectedRes = it.getInt("selected_res", 0)
             if (selectedRes != 0) {
                 binding.backgroundAnimation.setAndPlayLoopedAnimation(selectedRes)
-//                binding.backgroundAnimation.setImageDrawable(getDrawable(requireContext(), selectedRes))
             }
         }
 
@@ -126,7 +125,6 @@ class MainFragment : BaseFragment() {
             val extras = FragmentNavigatorExtras(binding.mainImage to "second_background_image")
             val args = Bundle().apply {
                 this.putInt("selected_res", currentMainResId)
-//                    this.putInt("selected_res", R.drawable.tree2)
             }
             viewModel.navigateToNextFragment(args, extras)
         }
