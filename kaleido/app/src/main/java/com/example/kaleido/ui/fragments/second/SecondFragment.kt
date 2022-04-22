@@ -46,9 +46,6 @@ class SecondFragment : AnimatedFragment() {
 
         mainImage = binding.mainImage
 
-        ViewCompat.setTransitionName(binding.backgroundAnimation, "second_background_image")
-        ViewCompat.setTransitionName(binding.mainImage, "second_main_image")
-
         arguments?.let {
             val selectedRes = it.getInt("selected_res", 0)
             if (selectedRes != 0) {
