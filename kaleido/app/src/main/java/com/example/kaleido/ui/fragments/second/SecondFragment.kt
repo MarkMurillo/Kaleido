@@ -55,10 +55,14 @@ class SecondFragment : BaseFragment() {
 
     override fun getViewModel(): BaseViewModel = viewModel
 
-    private var currentMainResId = R.raw.kaleidoscope
+    private var currentMainResId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (currentMainResId != 0) return
+
+        viewModel.refreshMainImage(R.raw.kaleidoscope)
 
         TransitionInflater.from(requireContext()).let {
             val enterSharedTransition = it.inflateTransition(R.transition.shared_image)
@@ -66,7 +70,7 @@ class SecondFragment : BaseFragment() {
             val fadeExitTransition = it.inflateTransition(R.transition.fade)
             sharedElementEnterTransition = enterSharedTransition
             sharedElementReturnTransition = exitSharedTransition
-            exitTransition = fadeExitTransition
+            //exitTransition = fadeExitTransition
 
             enterSharedTransition.addListener(object: android.transition.Transition.TransitionListener {
                 override fun onTransitionStart(p0: android.transition.Transition?) {}
@@ -110,13 +114,10 @@ class SecondFragment : BaseFragment() {
         ViewCompat.setTransitionName(binding.backgroundAnimation, "second_background_image")
         ViewCompat.setTransitionName(binding.mainImage, "second_main_image")
 
-        viewModel.refreshMainImage(currentMainResId)
-
         arguments?.let {
             val selectedRes = it.getInt("selected_res", 0)
             if (selectedRes != 0) {
                 binding.backgroundAnimation.setAndPlayLoopedAnimation(selectedRes)
-//                binding.backgroundAnimation.setImageDrawable(getDrawable(requireContext(), selectedRes))
             }
         }
 
@@ -139,7 +140,6 @@ class SecondFragment : BaseFragment() {
 
         viewModel.mainImageResId.observe(viewLifecycleOwner) {
             currentMainResId = it
-//            binding.mainImage.setImageDrawable(getDrawable(requireContext(), R.drawable.tree1))
             binding.mainImage.setAndPlayLoopedAnimation(it)
         }
 
@@ -150,7 +150,6 @@ class SecondFragment : BaseFragment() {
                 val selectedRes = it.getInt("selected_res", 0)
                 if (selectedRes != 0) {
                     binding.backgroundAnimation.setAndPlayLoopedAnimation(selectedRes)
-//                binding.backgroundAnimation.setImageDrawable(getDrawable(requireContext(), selectedRes))
                 }
             }
         }

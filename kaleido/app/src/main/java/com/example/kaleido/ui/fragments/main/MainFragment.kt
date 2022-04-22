@@ -55,10 +55,14 @@ class MainFragment : BaseFragment() {
 
     override fun getViewModel(): BaseViewModel = viewModel
 
-    private var currentMainResId = R.raw.kaleidoscope
+    private var currentMainResId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (currentMainResId != 0) return
+
+        viewModel.refreshMainImage(R.raw.kaleidoscope)
 
         TransitionInflater.from(requireContext()).let {
             val enterSharedTransition = it.inflateTransition(R.transition.shared_image)
@@ -118,8 +122,6 @@ class MainFragment : BaseFragment() {
             }
         }
 
-        viewModel.refreshMainImage(currentMainResId)
-
         binding.mainImage.setOnClickListener {
             val extras = FragmentNavigatorExtras(binding.mainImage to "second_background_image")
             val args = Bundle().apply {
@@ -138,7 +140,6 @@ class MainFragment : BaseFragment() {
         }
 
         viewModel.mainImageResId.observe(viewLifecycleOwner) {
-//            binding.mainImage.setImageDrawable(getDrawable(requireContext(), R.drawable.tree2))
             currentMainResId = it
             binding.mainImage.setAndPlayLoopedAnimation(it)
         }
@@ -149,7 +150,6 @@ class MainFragment : BaseFragment() {
                 val selectedRes = it.getInt("selected_res", 0)
                 if (selectedRes != 0) {
                     binding.backgroundAnimation.setAndPlayLoopedAnimation(selectedRes)
-//                binding.backgroundAnimation.setImageDrawable(getDrawable(requireContext(), selectedRes))
                 }
             }
             Log.d("Animation", "Is Animating: ${binding.backgroundAnimation.isAnimating}")
