@@ -54,7 +54,10 @@ class SecondFragment : AnimatedFragment() {
         }
 
         binding.mainImage.setOnClickListener {
-            val extras = FragmentNavigatorExtras(binding.mainImage to "background_image")
+            val extras = FragmentNavigatorExtras(
+                binding.mainImage to "third_background_anim",
+                binding.refreshButton to "third_refresh_button"
+            )
             viewModel.navigateToNextFragment(extras)
         }
 
@@ -64,24 +67,6 @@ class SecondFragment : AnimatedFragment() {
 
         viewModel.mainImageResId.observe(viewLifecycleOwner) {
             binding.mainImage.setAndPlayLoopedAnimation(it)
-        }
-
-        enterStartWork = {
-            // Hide main and refresh views initially at the start of the transition
-            mainImage?.alpha = 0f
-            binding.refreshButton.alpha = 0f
-        }
-
-        enterEndWork = {
-            fadeInView(binding.mainImage)
-            fadeInView(binding.refreshButton)
-            Log.d("Animation", "Is Animating: ${binding.backgroundAnimation.isAnimating}")
-            arguments?.let {
-                val selectedRes = it.getInt("selected_res", 0)
-                if (selectedRes != 0) {
-                    binding.backgroundAnimation.setAndPlayLoopedAnimation(selectedRes)
-                }
-            }
         }
 
         returnEndWork = {

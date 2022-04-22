@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Kaleido</string>
     <string name="cd_refresh">Refresh</string>
+    <string name="intro_text_1">Welcome to…</string>
+    <string name="intro_text_2">Kaleido</string>
+    <string name="intro_text_3">Behold…</string>
+    <string name="button_enter">Experience</string>
 </resources>

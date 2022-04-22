@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.second.SecondFragment">
+    tools:context=".ui.fragments.third.ThirdFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/backgroundAnimation"
@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:scaleType="fitCenter"
         android:background="@drawable/circular_shadow"
-        android:transitionName="second_background_anim"
+        android:transitionName="third_background_anim"
         app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
@@ -27,7 +27,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/circular_shadow"
-        android:transitionName="second_main_anim"
+        android:transitionName="third_main_anim"
         app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_rawRes="@raw/kaleidoscope"
         app:lottie_autoPlay="true"
@@ -43,11 +43,11 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
-        android:transitionName="second_refresh_button"
+        android:transitionName="third_refresh_button"
         android:src="@drawable/ic_baseline_refresh_24"
         app:fabSize="normal"
         app:fabCustomSize="48dp"
-        app:layout_constraintEnd_toStartOf="@id/mainImage"
+        app:layout_constraintStart_toEndOf="@id/mainImage"
         app:layout_constraintTop_toTopOf="@id/mainImage"
         app:useCompatPadding="false" />
 

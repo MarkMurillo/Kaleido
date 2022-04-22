@@ -1,4 +1,4 @@
-package com.example.kaleido.ui.fragments.second
+package com.example.kaleido.ui.fragments.third
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
@@ -13,11 +13,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import javax.inject.Named
 
-class SecondViewModel: AnimatedViewModel() {
+class ThirdViewModel: AnimatedViewModel() {
     override fun navigateToNextFragment(extras: FragmentNavigator.Extras) {
         val args = Bundle().apply {
             this.putInt("selected_res", currentMainResId)
         }
-        navigate(R.id.action_third_fragment, args, extras)
+        navigate(R.id.action_first_fragment, args, extras)
     }
 }

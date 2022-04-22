@@ -10,13 +10,13 @@ object AppUtils {
 
     private val resArray = arrayOf(
         R.raw.kaleidoscope,
-        R.raw.kaleidoscope_loading_animation,
+        R.raw.best_heart_button,
         R.raw.abstract_blue_and_yellow,
+        R.raw.office_365_automation_abstract_animation,
+        R.raw.kaleidoscope_loading_animation,
         R.raw.abstract_shapes_loader,
         R.raw.abstraction,
-        R.raw.best_heart_button,
         R.raw.multiple_spinning_dotted_rings_loading,
-        R.raw.office_365_automation_abstract_animation,
     )
 
     fun getNextLottieAnimation(): Int {

@@ -1,6 +1,5 @@
 package com.example.kaleido.ui.common
 
-import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.FragmentNavigator

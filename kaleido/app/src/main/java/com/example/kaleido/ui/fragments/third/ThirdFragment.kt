@@ -1,14 +1,14 @@
-package com.example.kaleido.ui.fragments.main
+package com.example.kaleido.ui.fragments.third
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.airbnb.lottie.LottieAnimationView
-import com.example.kaleido.databinding.MainFragmentBinding
+import com.example.kaleido.databinding.SecondFragmentBinding
+import com.example.kaleido.databinding.ThirdFragmentBinding
 import com.example.kaleido.ui.common.AnimatedFragment
 import com.example.kaleido.ui.common.AnimatedViewModel
 import com.example.kaleido.utils.setAndPlayLoopedAnimation
@@ -18,13 +18,13 @@ import dagger.hilt.android.AndroidEntryPoint
  * Fragments and activities MUST have the @AndroidEntryPoint annotation.
  */
 @AndroidEntryPoint
-class MainFragment : AnimatedFragment() {
+class ThirdFragment : AnimatedFragment() {
 
     /**
      * use viewModels() to scope it to this fragment
      * use activityViewModels() to scope it to its activity
      */
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<ThirdViewModel>()
 
     override fun getViewModel(): AnimatedViewModel = viewModel
 
@@ -35,7 +35,7 @@ class MainFragment : AnimatedFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = MainFragmentBinding.inflate(inflater, container, false)
+        val binding = ThirdFragmentBinding.inflate(inflater, container, false)
 
         mainImage = binding.mainImage
 
@@ -48,8 +48,8 @@ class MainFragment : AnimatedFragment() {
 
         binding.mainImage.setOnClickListener {
             val extras = FragmentNavigatorExtras(
-                binding.mainImage to "second_background_anim", // Move our main animation to our background animation
-                binding.refreshButton to "second_refresh_button" // Translate our refresh button to our next view's position
+                binding.mainImage to "background_anim",
+                binding.refreshButton to "refresh_button"
             )
             viewModel.navigateToNextFragment(extras)
         }

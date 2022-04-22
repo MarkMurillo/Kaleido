@@ -4,4 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.splash.SplashFragment"/>
+    tools:context=".ui.fragments.splash.SplashFragment"
+    android:id="@+id/parentContainer"
+    android:background="@color/orange_700">
+
+    <ImageView
+        android:alpha="0"
+        android:id="@+id/backgroundGradient"
+        android:src="@drawable/circular_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:alpha="0"
+        android:id="@+id/introText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intro_text_1"
+        android:textColor="@color/brown"
+        android:textSize="34sp"
+        app:fontFamily="@font/lobster"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:alpha="0"
+        android:id="@+id/playButton"
+        android:contentDescription="@string/cd_refresh"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="48dp"
+        android:transitionName="second_refresh_button"
+        android:src="@drawable/ic_baseline_play_arrow_24"
+        app:fabSize="normal"
+        app:fabCustomSize="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:useCompatPadding="false" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
