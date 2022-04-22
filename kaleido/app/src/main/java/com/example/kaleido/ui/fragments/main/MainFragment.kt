@@ -1,7 +1,6 @@
 package com.example.kaleido.ui.fragments.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +11,7 @@ import com.example.kaleido.databinding.MainFragmentBinding
 import com.example.kaleido.ui.common.AnimatedFragment
 import com.example.kaleido.ui.common.AnimatedViewModel
 import com.example.kaleido.utils.setAndPlayLoopedAnimation
-import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * Fragments and activities MUST have the @AndroidEntryPoint annotation.
- */
-@AndroidEntryPoint
 class MainFragment : AnimatedFragment() {
 
     /**

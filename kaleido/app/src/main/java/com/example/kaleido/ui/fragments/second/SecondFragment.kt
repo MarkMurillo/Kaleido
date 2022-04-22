@@ -1,30 +1,17 @@
 package com.example.kaleido.ui.fragments.second
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.transition.TransitionInflater
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.animation.fadeIn
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.airbnb.lottie.LottieAnimationView
-import com.example.kaleido.R
 import com.example.kaleido.databinding.SecondFragmentBinding
 import com.example.kaleido.ui.common.AnimatedFragment
 import com.example.kaleido.ui.common.AnimatedViewModel
-import com.example.kaleido.ui.common.BaseViewModel
-import com.example.kaleido.utils.playLoopedAnimation
 import com.example.kaleido.utils.setAndPlayLoopedAnimation
-import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * Fragments and activities MUST have the @AndroidEntryPoint annotation.
- */
-@AndroidEntryPoint
 class SecondFragment : AnimatedFragment() {
 
     /**

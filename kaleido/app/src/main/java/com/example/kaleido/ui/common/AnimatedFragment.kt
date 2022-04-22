@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
-import androidx.compose.ui.layout.ScaleFactor
 import com.example.kaleido.R
 
 abstract class AnimatedFragment: BaseFragment() {

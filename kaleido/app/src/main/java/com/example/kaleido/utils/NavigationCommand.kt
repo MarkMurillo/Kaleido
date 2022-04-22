@@ -1,7 +1,6 @@
 package com.example.kaleido.utils
 
 import android.os.Bundle
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigator
 
 sealed class NavigationCommand {

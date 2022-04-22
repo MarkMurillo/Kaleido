@@ -1,11 +1,8 @@
 package com.example.kaleido.utils
 
 import com.example.kaleido.R
-import kotlin.random.Random
 
 object AppUtils {
-    private val seed = Random(System.currentTimeMillis())
-
     private var counter = 0
 
     private val resArray = arrayOf(

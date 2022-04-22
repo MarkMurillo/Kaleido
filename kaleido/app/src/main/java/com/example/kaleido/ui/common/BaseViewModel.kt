@@ -3,7 +3,6 @@ package com.example.kaleido.ui.common
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigator
 import com.example.kaleido.utils.NavigationCommand
 import com.example.kaleido.utils.SingleLiveEvent

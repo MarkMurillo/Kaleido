@@ -1,23 +1,17 @@
 package com.example.kaleido.ui.fragments.splash
 
 import android.animation.Animator
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.example.kaleido.R
 import com.example.kaleido.databinding.SplashFragmentBinding
 import com.example.kaleido.ui.common.AnimatedFragment
 import com.example.kaleido.ui.common.AnimatedViewModel
-import com.example.kaleido.ui.common.BaseFragment
-import com.example.kaleido.ui.common.BaseViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class SplashFragment: AnimatedFragment() {
 
     private val viewModel by viewModels<SplashViewModel>()
@@ -32,6 +26,7 @@ class SplashFragment: AnimatedFragment() {
     @Volatile
     private var curAnimation: Animator? = null
 
+    // We need this to detect if we have actually created this fragment already.
     @Volatile
     private var firstRun = true
 
@@ -42,6 +37,9 @@ class SplashFragment: AnimatedFragment() {
     ): View? {
         val binding = SplashFragmentBinding.inflate(inflater, container, false)
 
+        // If we have already created this fragment, we can reset the cancelAnimation
+        // flag so that if this fragment is shown again by pressing back button
+        // the animation wont stop after scaling the gradient background image.
         if (!firstRun) {
             cancelAnimation = false
         }

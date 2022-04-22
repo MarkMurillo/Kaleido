@@ -7,17 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.airbnb.lottie.LottieAnimationView
-import com.example.kaleido.databinding.SecondFragmentBinding
 import com.example.kaleido.databinding.ThirdFragmentBinding
 import com.example.kaleido.ui.common.AnimatedFragment
 import com.example.kaleido.ui.common.AnimatedViewModel
 import com.example.kaleido.utils.setAndPlayLoopedAnimation
-import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * Fragments and activities MUST have the @AndroidEntryPoint annotation.
- */
-@AndroidEntryPoint
 class ThirdFragment : AnimatedFragment() {
 
     /**
