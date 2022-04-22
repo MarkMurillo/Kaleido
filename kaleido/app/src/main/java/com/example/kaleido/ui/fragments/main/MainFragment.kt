@@ -1,36 +1,21 @@
 package com.example.kaleido.ui.fragments.main
 
 import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
-import android.content.Context
-import android.graphics.Matrix
-import android.graphics.RectF
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Parcelable
 import android.transition.TransitionInflater
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
-import androidx.core.view.ViewPropertyAnimatorListenerAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.transition.Transition
-import androidx.transition.TransitionSet
 import com.airbnb.lottie.LottieAnimationView
-import com.airbnb.lottie.LottieDrawable
 import com.example.kaleido.R
 import com.example.kaleido.databinding.MainFragmentBinding
-import com.example.kaleido.databinding.SecondFragmentBinding
 import com.example.kaleido.ui.common.BaseFragment
 import com.example.kaleido.ui.common.BaseViewModel
-import com.example.kaleido.utils.playBlockingAnimation
 import com.example.kaleido.utils.playLoopedAnimation
 import com.example.kaleido.utils.setAndPlayLoopedAnimation
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,6 +44,9 @@ class MainFragment : BaseFragment() {
     override fun getViewModel(): BaseViewModel = viewModel
 
     private var currentMainResId = 0
+
+    @Volatile
+    private var mainImage: LottieAnimationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,6 +103,8 @@ class MainFragment : BaseFragment() {
     ): View {
         val binding = MainFragmentBinding.inflate(inflater, container, false)
 
+        mainImage = binding.mainImage
+
         ViewCompat.setTransitionName(binding.mainImage, "main_image")
         ViewCompat.setTransitionName(binding.backgroundAnimation, "background_image")
 
@@ -147,7 +137,8 @@ class MainFragment : BaseFragment() {
         }
 
         enterStartWork = {
-            binding.mainImage.alpha = 0f
+            // Hide main and refresh views initially at the start of the transition
+            mainImage?.alpha = 0f
             binding.refreshButton.alpha = 0f
         }
 
@@ -163,38 +154,15 @@ class MainFragment : BaseFragment() {
         }
 
         returnEndWork = {
-            binding.mainImage.playLoopedAnimation()
+            fadeInViews(binding)
         }
-
-        binding.mainImage.alpha = 1f
-        binding.refreshButton.alpha = 1f
 
         return binding.root
     }
 
     private fun fadeInViews(binding: MainFragmentBinding) {
-        binding.mainImage.clearAnimation()
-
-        ObjectAnimator.ofFloat(binding.mainImage, View.ALPHA, 0f, 1f).apply {
+        ObjectAnimator.ofFloat(mainImage, View.ALPHA, 0f, 1f).apply {
             duration = 1000
-            addListener(object: Animator.AnimatorListener {
-                override fun onAnimationStart(p0: Animator?) {
-                    //TODO("Not yet implemented")
-                }
-
-                override fun onAnimationEnd(p0: Animator?) {
-                    removeListener(this)
-                    binding.mainImage.setAndPlayLoopedAnimation(currentMainResId)
-                }
-
-                override fun onAnimationCancel(p0: Animator?) {
-                    //TODO("Not yet implemented")
-                }
-
-                override fun onAnimationRepeat(p0: Animator?) {
-                    //TODO("Not yet implemented")
-                }
-            })
             start()
         }
 
