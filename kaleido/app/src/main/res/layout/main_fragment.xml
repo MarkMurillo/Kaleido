@@ -6,32 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.main.MainFragment">
 
-<!--    <com.airbnb.lottie.LottieAnimationView-->
-<!--        android:id="@+id/backgroundAnimation"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:background="@drawable/circular_shadow"-->
-<!--        android:transitionName="background_image"-->
-<!--        app:lottie_autoPlay="true"-->
-<!--        app:lottie_loop="true"-->
-<!--        app:lottie_rawRes="@raw/kaleidoscope"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/backgroundAnimation"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/tree1"
+        android:background="@drawable/circular_shadow"
         android:transitionName="background_image"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/kaleidoscope"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/backgroundAnimation"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/tree1"-->
+<!--        android:transitionName="background_image"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -42,30 +43,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-<!--        <com.airbnb.lottie.LottieAnimationView-->
-<!--            android:id="@+id/mainImage"-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="150dp"-->
-<!--            android:background="@drawable/circular_shadow"-->
-<!--            android:transitionName="main_image"-->
-<!--            app:lottie_rawRes="@raw/play_button"-->
-<!--            app:lottie_autoPlay="false"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:alpha="0"
             android:id="@+id/mainImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/tree2"
+            android:background="@drawable/circular_shadow"
             android:transitionName="main_image"
+            app:lottie_enableMergePathsForKitKatAndAbove="true"
+            app:lottie_rawRes="@raw/kaleidoscope"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+<!--        <ImageView-->
+<!--            android:alpha="0"-->
+<!--            android:id="@+id/mainImage"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:src="@drawable/tree2"-->
+<!--            android:transitionName="main_image"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:alpha="0"

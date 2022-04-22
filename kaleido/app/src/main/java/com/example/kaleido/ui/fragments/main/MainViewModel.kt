@@ -18,26 +18,15 @@ import javax.inject.Named
  * Dependencies are injected through the constructor only
  * and require the @Inject annotation on the constructor.
  */
-@HiltViewModel
-class MainViewModel @Inject constructor(
-    @Named("Sentence")
-    val appName: String
-) : BaseViewModel() {
-
-    private val _backgroundImageResId = MutableLiveData<Int>()
-    val backgroundImageResId: LiveData<Int>
-    get() = _backgroundImageResId
+class MainViewModel: BaseViewModel() {
 
     private val _mainImageResId = MutableLiveData<Int>()
     val mainImageResId: LiveData<Int>
-    get() = _mainImageResId
+        get() = _mainImageResId
 
-    var currentMainResId = R.raw.kaleidoscope
-
-    fun refreshMainImage() {
-//        val newRes = AppUtils.getRandomLottieResId(arrayOf(currentMainResId))
-//        currentMainResId = newRes
-        _mainImageResId.postValue(currentMainResId)
+    fun refreshMainImage(currentMainResId: Int) {
+        val newRes = AppUtils.getRandomLottieResId(arrayOf(currentMainResId))
+        _mainImageResId.postValue(newRes)
     }
 
     fun navigateToNextFragment(args: Bundle, extras: FragmentNavigator.Extras) {

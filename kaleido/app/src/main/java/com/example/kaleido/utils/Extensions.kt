@@ -2,6 +2,28 @@ package com.example.kaleido.utils
 
 import android.animation.Animator
 import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
+
+fun LottieAnimationView.setAndPlayLoopedAnimation(animationResId: Int) {
+    this.removeAllAnimatorListeners()
+    this.cancelAnimation()
+    this.repeatCount = LottieDrawable.INFINITE
+    this.enableMergePathsForKitKatAndAbove(true)
+    this.setAnimation(animationResId)
+    this.progress = 0f
+    this.repeatMode = LottieDrawable.RESTART
+    this.playAnimation()
+}
+
+fun LottieAnimationView.playLoopedAnimation() {
+    this.removeAllAnimatorListeners()
+    this.cancelAnimation()
+    this.repeatCount = LottieDrawable.INFINITE
+    this.enableMergePathsForKitKatAndAbove(true)
+    this.progress = 0f
+    this.repeatMode = LottieDrawable.RESTART
+    this.playAnimation()
+}
 
 fun LottieAnimationView.playBlockingAnimation(onAnimationEnd: (() -> Unit)? = null) {
     this.progress = 0f

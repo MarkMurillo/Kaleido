@@ -7,14 +7,14 @@ object AppUtils {
     private val seed = Random(System.currentTimeMillis())
 
     private val resArray = arrayOf(
-        R.raw.alliances_button,
+        R.raw.abstract_blue_and_yellow,
+        R.raw.abstract_shapes_loader,
+        R.raw.abstraction,
         R.raw.best_heart_button,
         R.raw.kaleidoscope,
         R.raw.kaleidoscope_loading_animation,
-        R.raw.play_button,
-        R.raw.social_media_marketing,
-        R.raw.viking_button,
-        R.raw.visuals,
+        R.raw.multiple_spinning_dotted_rings_loading,
+        R.raw.office_365_automation_abstract_animation
     )
 
     fun getRandomLottieResId(currentRes: Array<Int> = emptyArray()): Int {
